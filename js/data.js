@@ -58,7 +58,7 @@ const SITE = {
     dribbble:  "",
     instagram: "",
     youtube:   "",
-    website:   ""                          // ← адрес сайта после публикации (нужен для SEO)
+    website:   "https://chyngyztorogeldiev.github.io/resume-2026/"
   },
 
   /* ---------- 3. ЦИФРЫ НА ПЕРВОМ ЭКРАНЕ ---------- */
