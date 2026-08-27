@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07070a">
+
+<title>ARAKET — Python-разработчик</title>
+<meta name="description" content="Чингиз Торогелдиев — Python-разработчик из Бишкека. Backend на Django и PostgreSQL, фронтенд на React. Проекты: MemoryMee Atlas, Amana ERP, «Намаз убактысы», Гренки. Открыт к работе.">
+<meta name="keywords" content="Чингиз Торогелдиев, Чынгыз Торогелдиев, Chyngyz Torogeldiev, Python разработчик Бишкек, Django, DRF, PostgreSQL, React, backend developer Kyrgyzstan, портфолио">
+<meta name="author" content="Чингиз Торогелдиев">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="ARAKET — Python-разработчик">
+<meta property="og:description" content="Python, Django и PostgreSQL на бэкенде, React на фронтенде. Открыт к работе и проектам.">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/favicon.svg">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ░░ ПРЕЛОАДЕР ░░ -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__inner">
+    <div class="preloader__mark" id="preMark">A</div>
+    <div class="preloader__bar"><span id="preBar"></span></div>
+    <div class="preloader__num"><span id="preNum">0</span>%</div>
+  </div>
+</div>
+
+<!-- ░░ ФОН: анимированное полотно + сетка + зерно ░░ -->
+<canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-noise" aria-hidden="true"></div>
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+<!-- ░░ КУРСОР ░░ -->
+<div class="cursor" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"><span></span></div>
+
+<!-- ░░ ПРОГРЕСС ПРОКРУТКИ ░░ -->
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<a href="#work" class="skip-link">К содержанию</a>
+
+<!-- ░░ ШАПКА ░░ -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__logo" data-magnetic>
+    <span class="nav__logo-mark" id="logoMark">A</span>
+    <span class="nav__logo-text" id="logoName">ARAKET</span>
+  </a>
+
+  <nav class="nav__links" id="navLinks" aria-label="Основная навигация">
+    <a href="#work"     data-ui="navWork">Работы</a>
+    <a href="#services" data-ui="navServices">Услуги</a>
+    <a href="#about"    data-ui="navAbout">Обо мне</a>
+    <a href="#process"  data-ui="navProcess">Процесс</a>
+    <a href="#contact"  data-ui="navContact">Контакты</a>
+  </nav>
+
+  <div class="nav__actions">
+    <button class="icon-btn" id="langBtn" type="button" aria-label="Сменить язык"><span id="langLabel">EN</span></button>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Сменить тему">
+      <svg viewBox="0 0 24 24" class="ic-sun"  aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+      <svg viewBox="0 0 24 24" class="ic-moon" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+    </button>
+    <a href="#contact" class="btn btn--sm btn--primary nav__cta" data-ui="ctaHire" data-magnetic>Обсудить проект</a>
+    <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ░░ МОБИЛЬНОЕ МЕНЮ ░░ -->
+<div class="menu" id="menu" aria-hidden="true">
+  <nav class="menu__nav">
+    <a href="#work"     data-ui="navWork">Работы</a>
+    <a href="#services" data-ui="navServices">Услуги</a>
+    <a href="#about"    data-ui="navAbout">Обо мне</a>
+    <a href="#process"  data-ui="navProcess">Процесс</a>
+    <a href="#contact"  data-ui="navContact">Контакты</a>
+  </nav>
+  <div class="menu__foot" id="menuFoot"></div>
+</div>
+
+<main id="top">
+
+  <!-- ░░ ПЕРВЫЙ ЭКРАН ░░ -->
+  <section class="hero" id="hero">
+   <div class="hero__top">
+    <div class="hero__inner">
+
+      <div class="badge reveal" id="availBadge">
+        <span class="badge__dot"></span>
+        <span id="availText">Открыт к работе и проектам</span>
+      </div>
+
+      <h1 class="hero__title" id="heroTitle"></h1>
+
+      <p class="hero__role reveal" id="heroRole"></p>
+      <p class="hero__text reveal" id="heroText"></p>
+
+      <div class="hero__cta reveal">
+        <a href="#contact" class="btn btn--primary btn--lg" data-ui="ctaHire" data-magnetic>Обсудить проект</a>
+        <a href="#work" class="btn btn--ghost btn--lg" data-ui="ctaWork" data-magnetic>Смотреть работы</a>
+        <a href="#" class="btn btn--ghost btn--lg" id="resumeBtn" data-ui="ctaResume" hidden>Скачать резюме</a>
+      </div>
+
+    </div>
+
+    <div class="hero__photo reveal">
+      <div class="hero__photo-stage">
+        <img id="heroPhoto" class="ph ph--body" alt="" width="476" height="602">
+        <img id="heroHead"  class="ph ph--head" alt="" width="476" height="602" aria-hidden="true">
+      </div>
+    </div>
+   </div>
+
+   <div class="hero__stats" id="heroStats"></div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span data-ui="scroll">Листайте вниз</span>
+      <i></i>
+    </div>
+  </section>
+
+  <!-- ░░ БЕГУЩАЯ СТРОКА ░░ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marqueeTrack"></div>
+  </div>
+
+  <!-- ░░ УСЛУГИ ░░ -->
+  <section class="section" id="services">
+    <div class="section__head reveal">
+      <span class="eyebrow" data-ui="secServices">Что я делаю</span>
+      <h2 class="section__title" data-ui-rich="secServicesT"></h2>
+    </div>
+    <div class="services" id="servicesGrid"></div>
+  </section>
+
+  <!-- ░░ РАБОТЫ ░░ -->
+  <section class="section" id="work">
+    <div class="section__head reveal">
+      <span class="eyebrow" data-ui="secWork">Избранные работы</span>
+      <h2 class="section__title" data-ui-rich="secWorkT"></h2>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="works" id="worksGrid"></div>
+  </section>
+
+  <!-- ░░ ОБО МНЕ ░░ -->
+  <section class="section" id="about">
+    <div class="section__head reveal">
+      <span class="eyebrow" data-ui="secAbout">Обо мне</span>
+      <h2 class="section__title" data-ui-rich="secAboutT"></h2>
+    </div>
+
+    <div class="bento">
+      <article class="bento__card bento__card--photo reveal">
+        <div class="avatar" id="avatar"></div>
+        <div class="bento__photo-meta">
+          <strong id="aboutName"></strong>
+          <span id="aboutRole"></span>
+        </div>
+      </article>
+
+      <article class="bento__card bento__card--bio reveal">
+        <div id="aboutBio"></div>
+        <div class="bento__signature" id="signature"></div>
+      </article>
+
+      <article class="bento__card bento__card--years reveal">
+        <div class="big-num"><span id="yearsNum">0</span><i>+</i></div>
+        <span class="bento__label" data-ui="yearsLabel">года в вебе</span>
+      </article>
+
+      <article class="bento__card bento__card--clock reveal">
+        <span class="bento__label" data-ui="localTime">Местное время</span>
+        <div class="clock" id="clock">--:--:--</div>
+        <span class="bento__sub" id="clockCity"></span>
+      </article>
+
+      <article class="bento__card bento__card--stack reveal">
+        <span class="bento__label" data-ui="stackTitle">Работаю с</span>
+        <div class="chips" id="stackChips"></div>
+      </article>
+
+      <article class="bento__card bento__card--now reveal">
+        <span class="bento__label" data-ui="nowTitle">Сейчас в работе</span>
+        <p data-ui="nowText"></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ░░ ПРОЦЕСС ░░ -->
+  <section class="section" id="process">
+    <div class="section__head reveal">
+      <span class="eyebrow" data-ui="secProcess">Процесс</span>
+      <h2 class="section__title" data-ui-rich="secProcessT"></h2>
+    </div>
+    <div class="process" id="processGrid"></div>
+  </section>
+
+  <!-- ░░ ОПЫТ ░░ -->
+  <section class="section" id="experience">
+    <div class="section__head reveal">
+      <span class="eyebrow" data-ui="secExp">Опыт и образование</span>
+      <h2 class="section__title" data-ui-rich="secExpT"></h2>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- ░░ FAQ ░░ -->
+  <section class="section" id="faq">
+    <div class="section__head reveal">
+      <span class="eyebrow" data-ui="secFaq">Вопросы</span>
+      <h2 class="section__title" data-ui-rich="secFaqT"></h2>
+    </div>
+    <div class="faq" id="faqList"></div>
+  </section>
+
+  <!-- ░░ КОНТАКТЫ ░░ -->
+  <section class="section section--contact" id="contact">
+    <div class="contact">
+      <div class="contact__left reveal">
+        <span class="eyebrow" data-ui="secContact">Контакты</span>
+        <h2 class="contact__title" data-ui-rich="contactTitle"></h2>
+        <p class="contact__text" data-ui="contactText"></p>
+
+        <div class="contact__email">
+          <a href="#" id="emailLink" class="contact__email-link"></a>
+          <button class="copy-btn" id="copyBtn" type="button" data-ui="copy">Скопировать</button>
+        </div>
+
+        <div class="contact__cards" id="contactCards"></div>
+        <div class="socials" id="socials"></div>
+      </div>
+
+      <form class="form reveal" id="form" novalidate>
+        <label class="field">
+          <span data-ui="formName">Как вас зовут</span>
+          <input type="text" name="name" required autocomplete="name">
+        </label>
+        <label class="field">
+          <span data-ui="formEmail">Email или телефон</span>
+          <input type="text" name="contact" required autocomplete="email">
+        </label>
+        <label class="field">
+          <span data-ui="formMessage">О проекте</span>
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button class="btn btn--primary btn--lg btn--full" type="submit" data-ui="formSend" data-magnetic>Отправить сообщение</button>
+        <p class="form__note" id="formNote" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ░░ ПОДВАЛ ░░ -->
+<footer class="footer">
+  <div class="footer__row">
+    <span id="footName"></span>
+    <span class="footer__mid" data-ui="builtWith">Сделано вручную</span>
+    <a href="#top" class="footer__top" data-ui="backTop" data-magnetic>Наверх</a>
+  </div>
+  <div class="footer__row footer__row--small">
+    <span id="footRights"></span>
+    <span id="footLoc"></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/background.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
