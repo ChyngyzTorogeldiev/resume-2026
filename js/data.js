@@ -300,7 +300,6 @@ const SITE = {
     yearsLabel:   { ru: "года в вебе", en: "years in web" },
     backTop:      { ru: "Наверх", en: "Back to top" },
     rights:       { ru: "Все права защищены", en: "All rights reserved" },
-    builtWith:    { ru: "Сделано вручную, без конструкторов", en: "Hand-coded, no page builders" },
     viewProject:  { ru: "Открыть проект", en: "View project" },
     themeToggle:  { ru: "Сменить тему", en: "Toggle theme" },
     langToggle:   { ru: "Switch to English", en: "Переключить на русский" },
